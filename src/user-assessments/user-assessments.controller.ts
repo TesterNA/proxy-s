@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Req } from "@nestjs/common";
 
 import { UserAssessmentsService } from './user-assessments.service';
 import {
@@ -13,8 +13,10 @@ export class UserAssessmentsController {
   ) {}
 
   @Get()
-  userAssessments(): Promise<UserAssessmentDto[]> {
-    return this.userAssessmentsService.getUserAssessments();
+  userAssessments(
+    @Req() req: { isAdmin: boolean },
+  ): Promise<UserAssessmentDto[]> {
+    return this.userAssessmentsService.getUserAssessments(req.isAdmin);
   }
 
   @Get('graph')

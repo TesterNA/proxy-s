@@ -11,8 +11,8 @@ import {
 
 @Injectable()
 export class UserAssessmentsService {
-  getUserAssessments(): Promise<UserAssessmentDto[]> {
-    return Promise.resolve(userAssessments);
+  getUserAssessments(isAdmin: boolean): Promise<UserAssessmentDto[]> {
+    return Promise.resolve(isAdmin ? userAssessments : [userAssessments[0]]);
   }
   getUserGraph(userId: number): Promise<UserAssessmentGraphDto> {
     return Promise.resolve(usersAssessmentsGraph[userId]);
