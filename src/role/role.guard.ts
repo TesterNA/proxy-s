@@ -6,6 +6,6 @@ export class RoleGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    return context.switchToHttp().getRequest().req?.['isAdmin'];
+    return context.switchToHttp().getRequest()?.['isAdmin'];
   }
 }
